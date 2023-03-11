@@ -42,6 +42,15 @@ app.get("/pacients/:id", (req, res) => {
 
 // UPDATE PACIENTE BY ID
 app.put("/pacientes/:id", (req, res) => {
+  const { id } = req.params;
+  const { nome, email, idade } = req.body;
+
+  const paciente = pacientes.find((paciente) => paciente.id === id);
+
+  paciente.nome = nome;
+  paciente.email = email;
+  paciente.idade = idade;
+
   return res.status(200).json({ paciente });
 });
 
