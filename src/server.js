@@ -1,4 +1,5 @@
 import express from "express";
+import { randomUUID } from "node:crypto";
 
 const app = express();
 
@@ -13,7 +14,14 @@ var pacientes = [];
 app.post("/pacientes", (req, res) => {
   const { nome, email, idade } = req.body;
 
-  pacientes.push({ nome });
+  const paciente = {
+    id: randomUUID(),
+    nome,
+    email,
+    idade,
+  };
+
+  pacientes.push({ paciente });
 
   return res.status(201).json({ paciente });
 });
