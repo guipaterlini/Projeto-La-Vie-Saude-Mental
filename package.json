@@ -1,7 +1,7 @@
 {
   "name": "projeto-la-vie-saude-mental",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto Backend para a pagina La Vie - Saude Mental",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/guipaterlini/Projeto-La-Vie-Saude-Mental.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "guipaterlini, Leonardo-tech-stack e bnvsureck",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/guipaterlini/Projeto-La-Vie-Saude-Mental/issues"
