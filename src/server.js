@@ -1,5 +1,4 @@
 import express from "express";
-import { randomUUID } from "node:crypto";
 import routes from "./routes/routes.js";
 
 const app = express();

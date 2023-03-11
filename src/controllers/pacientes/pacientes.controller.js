@@ -1,7 +1,9 @@
-export const insertPacientes = (req, res) => {
-  const { nome, email, idade } = req.body;
+import { randomUUID } from "node:crypto";
 
+export const insertPacientes = (req, res) => {
   var pacientes = global.pacientes;
+
+  const { nome, email, idade } = req.body;
 
   const paciente = {
     id: randomUUID(),
@@ -22,9 +24,9 @@ export const findAllPacientes = (req, res) => {
 };
 
 export const findOnePacienteById = (req, res) => {
-  const { id } = req.params;
-
   var pacientes = global.pacientes;
+
+  const { id } = req.params;
 
   const paciente = pacientes.find((paciente) => paciente.id === id);
 
@@ -36,10 +38,11 @@ export const findOnePacienteById = (req, res) => {
 };
 
 export const updatePacienteById = (req, res) => {
+  var pacientes = global.pacientes;
+
   const { id } = req.params;
   const { nome, email, idade } = req.body;
 
-  var pacientes = global.pacientes;
 
   const paciente = pacientes.find((paciente) => paciente.id === id);
 
@@ -51,9 +54,9 @@ export const updatePacienteById = (req, res) => {
 };
 
 export const deletePacienteById = (req, res) => {
-  const { id } = req.params;
-
   var pacientes = global.pacientes;
+
+  const { id } = req.params;
 
   const indexOfPaciente = pacientes.findIndex((paciente) => paciente.id === id);
   pacientes.splice(indexOfPaciente, 1);
