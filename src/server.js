@@ -56,6 +56,11 @@ app.put("/pacientes/:id", (req, res) => {
 
 // DELETE PACIENTE BY ID
 app.delete("/pacientes/:id", (req, res) => {
+  const { id } = req.params;
+
+  const indexOfPaciente = pacientes.findIndex(paciente => paciente.id === id)
+  pacientes.splice(indexOfPaciente, 1)
+
   return res.status(204).send();
 });
 
