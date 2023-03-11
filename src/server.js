@@ -37,6 +37,10 @@ app.get("/pacients/:id", (req, res) => {
 
   const paciente = pacientes.find((paciente) => paciente.id === id);
 
+  if (!user) {
+    return res.status(404).json({ message: "Id não encontrado" });
+  }
+
   return res.status(200).json({ paciente });
 });
 
@@ -58,8 +62,8 @@ app.put("/pacientes/:id", (req, res) => {
 app.delete("/pacientes/:id", (req, res) => {
   const { id } = req.params;
 
-  const indexOfPaciente = pacientes.findIndex(paciente => paciente.id === id)
-  pacientes.splice(indexOfPaciente, 1)
+  const indexOfPaciente = pacientes.findIndex((paciente) => paciente.id === id);
+  pacientes.splice(indexOfPaciente, 1);
 
   return res.status(204).send();
 });
