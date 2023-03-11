@@ -12,7 +12,7 @@ const routes = Router();
 // Rotas Pacientes
 routes.post("/pacientes", insertPacientes);
 routes.get("/pacientes", findAllPacientes);
-routes.get("/pacients/:id", findOnePacienteById);
+routes.get("/pacientes/:id", findOnePacienteById);
 routes.put("/pacientes/:id", updatePacienteById);
 routes.delete("/pacientes/:id", deletePacienteById);
 

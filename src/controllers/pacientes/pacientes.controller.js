@@ -12,6 +12,8 @@ export const insertPacientes = (req, res) => {
     idade,
   };
 
+  
+
   pacientes.push(paciente);
 
   return res.status(201).json({ paciente });
@@ -43,7 +45,6 @@ export const updatePacienteById = (req, res) => {
   const { id } = req.params;
   const { nome, email, idade } = req.body;
 
-
   const paciente = pacientes.find((paciente) => paciente.id === id);
 
   paciente.nome = nome;
@@ -58,8 +59,14 @@ export const deletePacienteById = (req, res) => {
 
   const { id } = req.params;
 
+  const paciente = pacientes.find((paciente) => paciente.id === id);
+
   const indexOfPaciente = pacientes.findIndex((paciente) => paciente.id === id);
   pacientes.splice(indexOfPaciente, 1);
+
+  if (!paciente) {
+    return res.status(404).json({ message: "Id não encontrado" });
+  }
 
   return res.status(204).send();
 };
