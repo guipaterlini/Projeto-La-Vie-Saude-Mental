@@ -21,7 +21,7 @@ app.post("/pacientes", (req, res) => {
     idade,
   };
 
-  pacientes.push({ paciente });
+  pacientes.push(paciente);
 
   return res.status(201).json({ paciente });
 });
@@ -33,6 +33,10 @@ app.get("/pacientes", (req, res) => {
 
 // FIND ONE PACIENTE BY ID
 app.get("/pacients/:id", (req, res) => {
+  const { id } = req.params;
+
+  const paciente = pacientes.find((paciente) => paciente.id === id);
+
   return res.status(200).json({ paciente });
 });
 
