@@ -9,15 +9,15 @@ const DB_CONFIGS = {
   port: 3306,
 };
 
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, DB_CONFIGS);
+const db = new Sequelize(DB_NAME, DB_USER, DB_PASS, DB_CONFIGS);
 
 (async () => {
   try {
-    await sequelize.authenticate();
+    await db.authenticate();
     console.log("Conectado com sucesso!");
   } catch (err) {
     console.error(err);
   }
 })();
 
-export { sequelize };
+export { db };
