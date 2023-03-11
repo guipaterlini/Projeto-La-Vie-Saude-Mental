@@ -11,9 +11,7 @@ export const insertPacientes = (req, res) => {
     email,
     idade,
   };
-
-  
-
+ 
   pacientes.push(paciente);
 
   return res.status(201).json({ paciente });
