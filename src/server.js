@@ -1,14 +1,16 @@
 import express from "express";
 import { randomUUID } from "node:crypto";
+import routes from "./routes/routes.js";
 
 const app = express();
 
 const PORT = 3333;
 
-// Middleware para que o express entenda json, precisa estar sempre acima das rotas
+// Middleware, a ordem deles tem impacto no funcionamento da aplicação
 app.use(express.json());
+app.use(routes);
 
-var pacientes = [];
+global.pacientes = [];
 
 // INSERT PACIENTES
 app.post("/pacientes", (req, res) => {
@@ -37,7 +39,7 @@ app.get("/pacients/:id", (req, res) => {
 
   const paciente = pacientes.find((paciente) => paciente.id === id);
 
-  if (!user) {
+  if (!paciente) {
     return res.status(404).json({ message: "Id não encontrado" });
   }
 
