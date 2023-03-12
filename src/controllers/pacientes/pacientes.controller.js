@@ -46,7 +46,7 @@ export const updatePacienteById = async (req, res) => {
 
   const objetoPaciente = { id, nome, email, idade };
   const checarId = await findPacienteById(id);
-  
+
   if (
     checarId &&
     objetoPaciente.nome &&
