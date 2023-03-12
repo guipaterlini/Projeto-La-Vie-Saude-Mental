@@ -45,11 +45,9 @@ export const updatePacienteById = async (req, res) => {
 export const deletePacienteById = async (req, res) => {
   const { id } = req.params;
 
-  await deletePacienteRepository(id);
+  const paciente = await findPacienteById(id);
 
-  if (!paciente) {
-    return res.status(404).json({ message: "Id não encontrado" });
-  }
-
-  return res.status(204).send();
+  !paciente
+    ? res.status(404).json({ message: "Id não encontrado" })
+    : (await deletePacienteRepository(id), res.status(204).send());
 };

@@ -18,7 +18,7 @@ export const updatePacienterepository = async (id, nome, email, idade) => {
 };
 
 export const deletePacienteRepository = async (id) => {
-  await Paciente.destroy({ where: { id } });
+ return await Paciente.destroy({ where: { id } });
 };
 
 export const findAllPacientesRepository = async () => {
