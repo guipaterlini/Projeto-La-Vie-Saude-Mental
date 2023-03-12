@@ -23,11 +23,9 @@ export const findAllPacientes = async (req, res) => {
 };
 
 export const findOnePacienteById = async (req, res) => {
-  var pacientes = global.pacientes;
-
   const { id } = req.params;
 
-  const paciente = pacientes.find((paciente) => paciente.id === id);
+  const paciente = await Paciente.findOne({ where: { id } });
 
   if (!paciente) {
     return res.status(404).json({ message: "Id não encontrado" });
@@ -36,30 +34,23 @@ export const findOnePacienteById = async (req, res) => {
   return res.status(200).json({ paciente });
 };
 
-export const updatePacienteById = (req, res) => {
-  var pacientes = global.pacientes;
-
+export const updatePacienteById = async (req, res) => {
   const { id } = req.params;
   const { nome, email, idade } = req.body;
 
-  const paciente = pacientes.find((paciente) => paciente.id === id);
+  await Paciente.update({ nome, email, idade }, { where: { id } });
 
-  paciente.nome = nome;
-  paciente.email = email;
-  paciente.idade = idade;
+  const paciente = await Paciente.findOne({ where: { id } });
 
   return res.status(200).json({ paciente });
 };
 
-export const deletePacienteById = (req, res) => {
-  var pacientes = global.pacientes;
-
+export const deletePacienteById = async (req, res) => {
   const { id } = req.params;
 
-  const paciente = pacientes.find((paciente) => paciente.id === id);
+  await Paciente.destroy({ where: { id } });
 
-  const indexOfPaciente = pacientes.findIndex((paciente) => paciente.id === id);
-  pacientes.splice(indexOfPaciente, 1);
+  const paciente = pacientes.find((paciente) => paciente.id === id);
 
   if (!paciente) {
     return res.status(404).json({ message: "Id não encontrado" });
