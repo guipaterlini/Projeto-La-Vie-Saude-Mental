@@ -9,17 +9,9 @@ import {
 export const insertPacientes = async (req, res) => {
   const { nome, email, idade } = req.body;
 
-  const objetoPaciente = { nome, email, idade };
+  const paciente = await createPacienteRepository(nome, email, idade);
 
-  if (objetoPaciente.nome && objetoPaciente.email && objetoPaciente.idade) {
-    const paciente = await createPacienteRepository(nome, email, idade);
-
-    return res.status(201).json({ paciente });
-  }
-
-  return res.status(400).json({
-    message: "Verique se todos os dados da requisição foram preenchidos",
-  });
+  return res.status(201).json({ paciente });
 };
 
 export const findAllPacientes = async (req, res) => {
