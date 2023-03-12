@@ -6,6 +6,7 @@ import {
   insertPacientes,
   updatePacienteById,
 } from "../controllers/pacientes/pacientes.controller.js";
+import verifyEmailAlreadyExists from "../middlewares/verify-email-already-exists.middleware.js";
 import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
 import verifyFieldName from "../middlewares/verify-field-name.middleware.js";
@@ -18,6 +19,7 @@ const routes = Router();
 routes.post(
   "/pacientes",
   verifyFieldEmail,
+  verifyEmailAlreadyExists,
   verifyFieldName,
   verifyFieldAge,
   insertPacientes
@@ -27,6 +29,7 @@ routes.get("/pacientes/:id", findOnePacienteById);
 routes.put(
   "/pacientes/:id",
   verifyFieldEmail,
+  verifyEmailAlreadyExists,
   verifyFieldName,
   verifyFieldAge,
   updatePacienteById
