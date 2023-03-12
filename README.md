@@ -7,6 +7,11 @@ Banco de dados MySQL.
 
 Link para acessar o projeto: https://guipaterlini.github.io/Projeto-La-Vie-Saude-Mental/
 
+# Intruções para utilizar o projeto
+- Clone o repositorio para a sua máquina utilizando o git clone 
+- No terminal, dentro do projeto, instale todos os pacotes e depêndencias usando o npm install
+- Crie o banco de dados e as tabelas utilizando os comendos do arquivo /src/database/createDatabase.sql
+
 # 📁 Objetivos de estudo
 - Boas práticas em relação ao uso de JS e organização do projeto usando os princípios do MVC.
 - Construir uma API utilizando boas práticas em Node.js e Express.

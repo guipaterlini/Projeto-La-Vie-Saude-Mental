@@ -9,9 +9,17 @@ import {
 export const insertPacientes = async (req, res) => {
   const { nome, email, idade } = req.body;
 
-  const paciente = await createPacienteRepository(nome, email, idade);
+  const objetoPaciente = { nome, email, idade };
 
-  return res.status(201).json({ paciente });
+  if (objetoPaciente.nome && objetoPaciente.email && objetoPaciente.idade) {
+    const paciente = await createPacienteRepository(nome, email, idade);
+
+    return res.status(201).json({ paciente });
+  }
+
+  return res.status(400).json({
+    message: "Verique se todos os dados da requisição foram preenchidos",
+  });
 };
 
 export const findAllPacientes = async (req, res) => {
@@ -36,9 +44,24 @@ export const updatePacienteById = async (req, res) => {
   const { id } = req.params;
   const { nome, email, idade } = req.body;
 
-  const paciente = await updatePacienterepository(id, nome, email, idade);
+  const objetoPaciente = { id, nome, email, idade };
+  const checarId = await findPacienteById(id);
+  
+  if (
+    checarId &&
+    objetoPaciente.nome &&
+    objetoPaciente.email &&
+    objetoPaciente.idade
+  ) {
+    const paciente = await updatePacienterepository(id, nome, email, idade);
 
-  return res.status(200).json(paciente);
+    return res.status(200).json(paciente);
+  }
+
+  return res.status(400).json({
+    message:
+      "Verique se todos os dados da requisição foram preenchidos corretamente",
+  });
 };
 
 export const deletePacienteById = async (req, res) => {
