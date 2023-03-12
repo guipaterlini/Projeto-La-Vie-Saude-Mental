@@ -11,6 +11,7 @@ export default function verifyFieldEmail(req, res, next) {
   }
 
   if (
+    email.length > 70 ||
     usuario.length < 1 ||
     dominio.length < 3 ||
     usuario.search("@") != -1 ||

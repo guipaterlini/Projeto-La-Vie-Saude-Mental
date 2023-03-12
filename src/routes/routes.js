@@ -17,7 +17,7 @@ const routes = Router();
 routes.post("/pacientes", verifyFieldEmail, insertPacientes);
 routes.get("/pacientes", findAllPacientes);
 routes.get("/pacientes/:id", findOnePacienteById);
-routes.put("/pacientes/:id", updatePacienteById);
+routes.put("/pacientes/:id", verifyFieldEmail, updatePacienteById);
 routes.delete("/pacientes/:id", deletePacienteById);
 
 
