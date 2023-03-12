@@ -9,7 +9,5 @@ const PORT = 3333;
 app.use(express.json());
 app.use(routes);
 
-global.pacientes = [];
-
 // Tem como função somente mostrar que o servidor está rodando
 app.listen(PORT, () => console.log(`server running in localhost:${PORT}`));
