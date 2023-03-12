@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize";
 
-const DB_NAME = "db_projeto_lavie";
+const DB_NAME = "db_projeto_lavie2";
 const DB_USER = "root";
 const DB_PASS = "12345678";
 const DB_CONFIGS = {
-  dialec: "mysql",
+  dialect: "mysql",
   host: "localhost",
   port: 3306,
 };

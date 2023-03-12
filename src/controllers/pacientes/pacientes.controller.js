@@ -1,8 +1,7 @@
 import { randomUUID } from "node:crypto";
+import { Paciente } from "../../database/models/paciente.model.js";
 
-export const insertPacientes = (req, res) => {
-  var pacientes = global.pacientes;
-
+export const insertPacientes = async (req, res) => {
   const { nome, email, idade } = req.body;
 
   const paciente = {
@@ -11,19 +10,19 @@ export const insertPacientes = (req, res) => {
     email,
     idade,
   };
- 
-  pacientes.push(paciente);
+
+  await Paciente.create({ id: randomUUID(), nome, email, idade });
 
   return res.status(201).json({ paciente });
 };
 
-export const findAllPacientes = (req, res) => {
-  var pacientes = global.pacientes;
+export const findAllPacientes = async (req, res) => {
+  const pacientes = await Paciente.findAll();
 
   return res.status(200).json({ pacientes });
 };
 
-export const findOnePacienteById = (req, res) => {
+export const findOnePacienteById = async (req, res) => {
   var pacientes = global.pacientes;
 
   const { id } = req.params;
