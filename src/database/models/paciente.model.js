@@ -13,7 +13,7 @@ export const Paciente = db.define(
       allowNull: false,
     },
     idade: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DATE,
       allowNull: true,
     },
   },

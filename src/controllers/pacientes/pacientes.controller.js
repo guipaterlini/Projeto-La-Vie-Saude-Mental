@@ -1,4 +1,3 @@
-import { Paciente } from "../../database/models/paciente.model.js";
 import {
   createPacienteRepository,
   deletePacienteRepository,
