@@ -16,7 +16,6 @@ export const findPacienteById = async (id) => {
 };
 
 export const updatePacienterepository = async (id, nome, email, idade) => {
-
   await Paciente.update({ nome, email, idade }, { where: { id } });
 
   return await Paciente.findOne({ where: { id } });
@@ -25,3 +24,9 @@ export const updatePacienterepository = async (id, nome, email, idade) => {
 export const deletePacienteRepository = async (id) => {
   return await Paciente.destroy({ where: { id } });
 };
+
+// export const findUserByEmail = async (name) => {
+//   const user = await User.findOne({ where: { name } });
+
+//   return user;
+// };

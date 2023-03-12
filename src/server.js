@@ -7,6 +7,7 @@ const PORT = 3333;
 
 // Middleware, a ordem deles tem impacto no funcionamento da aplicação
 app.use(express.json());
+
 app.use(routes);
 
 // Tem como função somente mostrar que o servidor está rodando
