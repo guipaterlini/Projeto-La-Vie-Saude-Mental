@@ -6,6 +6,7 @@ import {
   insertPacientes,
   updatePacienteById,
 } from "../controllers/pacientes/pacientes.controller.js";
+import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
 import verifyFieldName from "../middlewares/verify-field-name.middleware.js";
 // import auth from "../middlewares/auth.middleware.js";
@@ -14,13 +15,20 @@ import verifyFieldName from "../middlewares/verify-field-name.middleware.js";
 const routes = Router();
 
 // Rotas Pacientes
-routes.post("/pacientes", verifyFieldEmail, verifyFieldName, insertPacientes);
+routes.post(
+  "/pacientes",
+  verifyFieldEmail,
+  verifyFieldName,
+  verifyFieldAge,
+  insertPacientes
+);
 routes.get("/pacientes", findAllPacientes);
 routes.get("/pacientes/:id", findOnePacienteById);
 routes.put(
   "/pacientes/:id",
   verifyFieldEmail,
   verifyFieldName,
+  verifyFieldAge,
   updatePacienteById
 );
 routes.delete("/pacientes/:id", deletePacienteById);
