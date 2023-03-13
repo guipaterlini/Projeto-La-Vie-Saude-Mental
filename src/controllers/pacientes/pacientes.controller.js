@@ -1,7 +1,9 @@
+import { ERROR_DUPLICATE_EMAIL } from "../../errors/errors.js";
 import {
   createPacienteRepository,
   deletePacienteRepository,
   findAllPacientesRepository,
+  findPacienteByEmail,
   findPacienteById,
   updatePacienterepository,
 } from "../../repositories/pacientes/pacientes.repository.js";
@@ -32,15 +34,26 @@ export const updatePacienteById = async (req, res) => {
   const { id } = req.params;
   const { nome, email, idade } = req.body;
 
-  const paciente = await updatePacienterepository(id, nome, email, idade);
+  const paciente = await findPacienteByEmail(email);
 
-  return res.status(200).json(paciente);
+  if (paciente !== null) {
+    if (id !== paciente.id) {
+      return res.status(409).json({ err: ERROR_DUPLICATE_EMAIL(email) });
+    }
+  } else {
+    const pacienteAtualizado = await updatePacienterepository(
+      id,
+      nome,
+      email,
+      idade
+    );
+
+    return res.status(200).json(pacienteAtualizado);
+  }
 };
 
 export const deletePacienteById = async (req, res) => {
   const { id } = req.params;
-
-  const paciente = await findPacienteById(id);
 
   await deletePacienteRepository(id), res.status(204).send();
 };

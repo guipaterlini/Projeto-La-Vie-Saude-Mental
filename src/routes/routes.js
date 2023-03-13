@@ -31,7 +31,6 @@ routes.put(
   "/pacientes/:id",
   verifyValidId,
   verifyFieldEmail,
-  verifyEmailAlreadyExists,
   verifyFieldName,
   verifyFieldAge,
   updatePacienteById
