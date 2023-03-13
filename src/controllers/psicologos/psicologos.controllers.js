@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
-import { ERROR_INVALID_CREDENCIALS } from "../../errors/errors";
+import { ERROR_INVALID_CREDENCIALS } from "../../errors/errors.js";
 import {
   createPsicologoRepository,
   findPsicologoByEmail,
-} from "../../repositories/psicologos/psicologos.repository";
+} from "../../repositories/psicologos/psicologos.repository.js";
 
 export const login = async (req, res) => {
   const { email, senha } = req.body;
