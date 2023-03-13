@@ -1,6 +1,9 @@
 import jwt from "jsonwebtoken";
 import { ERROR_INVALID_CREDENCIALS } from "../../errors/errors";
-import { findPsicologoByEmail } from "../../repositories/psicologos/psicologos.repository";
+import {
+  createPsicologoRepository,
+  findPsicologoByEmail,
+} from "../../repositories/psicologos/psicologos.repository";
 
 export const login = async (req, res) => {
   const { email, senha } = req.body;
@@ -16,4 +19,17 @@ export const login = async (req, res) => {
   }
 
   res.status(401).json({ message: ERROR_INVALID_CREDENCIALS });
+};
+
+export const insertPsicologo = async (req, res) => {
+  const { nome, email, senha, apresentacao } = req.body;
+
+  const psicologo = await createPsicologoRepository(
+    nome,
+    email,
+    senha,
+    apresentacao
+  );
+
+  return res.status(201).json({ psicologo });
 };

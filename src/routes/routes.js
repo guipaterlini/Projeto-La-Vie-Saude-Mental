@@ -6,7 +6,10 @@ import {
   insertPacientes,
   updatePacienteById,
 } from "../controllers/pacientes/pacientes.controller.js";
-import { login } from "../controllers/psicologos/psicologos.controllers.js";
+import {
+  insertPsicologo,
+  login,
+} from "../controllers/psicologos/psicologos.controllers.js";
 import verifyEmailAlreadyExists from "../middlewares/verify-email-already-exists.middleware.js";
 import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
@@ -40,7 +43,7 @@ routes.put(
 routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
 
 // Rotas Psicologos
-routes.post("/psicologos", insertPsicologo); // precisa criar essa função lá no controllers
+routes.post("/psicologos", insertPsicologo);
 routes.get("/psicologos", findAllPsicologos); // precisa criar essa função lá no controllers
 routes.get("/psicologos/:id", findOnePsicologoById); // precisa criar essa função lá no controllers
 routes.put("/psicologos/:id", updatePsicologoById); // precisa criar essa função lá no controllers
