@@ -11,8 +11,6 @@ import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
 import verifyFieldName from "../middlewares/verify-field-name.middleware.js";
 import verifyValidId from "../middlewares/verify-valid-id.middleware.js";
-// import auth from "../middlewares/auth.middleware.js";
-// import verifyPassword from "../middlewares/verify-password.middleware.js";
 
 const routes = Router();
 
@@ -37,12 +35,11 @@ routes.put(
 );
 routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
 
-// routes.get("/pacientes", auth, findAllPacientes);
-// routes.get("/pacientes/:id", auth, findOnePacienteById);
-// routes.put("/pacientes/:id", auth, updatePacienteById);
-// routes.delete("/pacientes/:id", auth, deletePacienteById);
-
-// routes.post("/login", login);
-// routes.post('/users', verifyFieldName, verifyPassword, insertPacientes)
+// Rotas Psicologos
+routes.post("/psicologos", insertPsicologo);
+routes.get("/psicologos", findAllPsicologos);
+routes.get("/psicologos/:id", findOnePsicologoById);
+routes.put("/psicologos/:id", updatePsicologoById);
+routes.delete("/psicologos/:id", deletePsicologoById);
 
 export default routes;
