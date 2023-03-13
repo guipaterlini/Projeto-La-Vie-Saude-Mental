@@ -42,4 +42,9 @@ routes.get("/psicologos/:id", findOnePsicologoById);
 routes.put("/psicologos/:id", updatePsicologoById);
 routes.delete("/psicologos/:id", deletePsicologoById);
 
+// Rotas Atendimentos
+routes.post("/atendimentos", insertAtendimento);
+routes.get("/atendimentos", findAllAtendimentos);
+routes.get("/atendimentos/:id", findOneAtendimentoById);
+
 export default routes;
