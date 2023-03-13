@@ -25,10 +25,6 @@ export const findOnePacienteById = async (req, res) => {
 
   const paciente = await findPacienteById(id);
 
-  if (!paciente) {
-    return res.status(404).json({ message: "Id não encontrado" });
-  }
-
   return res.status(200).json({ paciente });
 };
 
@@ -36,24 +32,9 @@ export const updatePacienteById = async (req, res) => {
   const { id } = req.params;
   const { nome, email, idade } = req.body;
 
-  const objetoPaciente = { id, nome, email, idade };
-  const checarId = await findPacienteById(id);
+  const paciente = await updatePacienterepository(id, nome, email, idade);
 
-  if (
-    checarId &&
-    objetoPaciente.nome &&
-    objetoPaciente.email &&
-    objetoPaciente.idade
-  ) {
-    const paciente = await updatePacienterepository(id, nome, email, idade);
-
-    return res.status(200).json(paciente);
-  }
-
-  return res.status(400).json({
-    message:
-      "Verique se todos os dados da requisição foram preenchidos corretamente",
-  });
+  return res.status(200).json(paciente);
 };
 
 export const deletePacienteById = async (req, res) => {
@@ -61,7 +42,5 @@ export const deletePacienteById = async (req, res) => {
 
   const paciente = await findPacienteById(id);
 
-  !paciente
-    ? res.status(404).json({ message: "Id não encontrado" })
-    : (await deletePacienteRepository(id), res.status(204).send());
+  await deletePacienteRepository(id), res.status(204).send();
 };

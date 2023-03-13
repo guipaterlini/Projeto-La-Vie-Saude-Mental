@@ -10,6 +10,7 @@ import verifyEmailAlreadyExists from "../middlewares/verify-email-already-exists
 import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
 import verifyFieldName from "../middlewares/verify-field-name.middleware.js";
+import verifyValidId from "../middlewares/verify-valid-id.middleware.js";
 // import auth from "../middlewares/auth.middleware.js";
 // import verifyPassword from "../middlewares/verify-password.middleware.js";
 
@@ -25,16 +26,17 @@ routes.post(
   insertPacientes
 );
 routes.get("/pacientes", findAllPacientes);
-routes.get("/pacientes/:id", findOnePacienteById);
+routes.get("/pacientes/:id", verifyValidId, findOnePacienteById);
 routes.put(
   "/pacientes/:id",
+  verifyValidId,
   verifyFieldEmail,
   verifyEmailAlreadyExists,
   verifyFieldName,
   verifyFieldAge,
   updatePacienteById
 );
-routes.delete("/pacientes/:id", deletePacienteById);
+routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
 
 // routes.get("/pacientes", auth, findAllPacientes);
 // routes.get("/pacientes/:id", auth, findOnePacienteById);
