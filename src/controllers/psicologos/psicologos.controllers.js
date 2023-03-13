@@ -1,11 +1,9 @@
 import jwt from "jsonwebtoken";
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, senha } = req.body;
 
-  const { pass, nome } = await findUserByName(email);
-
-  console.log(pass);
+  await findUserByName(email);
 
   if (password === pass) {
     const secret = "secret";
