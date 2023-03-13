@@ -6,6 +6,7 @@ import {
   insertPacientes,
   updatePacienteById,
 } from "../controllers/pacientes/pacientes.controller.js";
+import { login } from "../controllers/psicologos/psicologos.controllers.js";
 import verifyEmailAlreadyExists from "../middlewares/verify-email-already-exists.middleware.js";
 import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
@@ -13,6 +14,9 @@ import verifyFieldName from "../middlewares/verify-field-name.middleware.js";
 import verifyValidId from "../middlewares/verify-valid-id.middleware.js";
 
 const routes = Router();
+
+// Rota Login Psicologo
+routes.post("/login", login);
 
 // Rotas Pacientes
 routes.post(

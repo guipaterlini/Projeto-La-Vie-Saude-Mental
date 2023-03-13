@@ -1,17 +1,19 @@
 import jwt from "jsonwebtoken";
+import { ERROR_INVALID_CREDENCIALS } from "../../errors/errors";
+import { findPsicologoByEmail } from "../../repositories/psicologos/psicologos.repository";
 
 export const login = async (req, res) => {
   const { email, senha } = req.body;
 
-  await findUserByName(email);
+  const psicologo = await findPsicologoByEmail(email);
 
-  if (password === pass) {
+  if (senha === psicologo.senha) {
     const secret = "secret";
 
-    const token = jwt.sign({ email, nome }, secret, { expiresIn: "1h" });
+    const token = jwt.sign({ id, email, nome }, secret, { expiresIn: "1h" });
 
-    return res.status(202).json({ token });
+    return res.status(200).json({ token });
   }
 
-  res.status(401).json({ message: "Credenciais inválidas" });
+  res.status(401).json({ message: ERROR_INVALID_CREDENCIALS });
 };
