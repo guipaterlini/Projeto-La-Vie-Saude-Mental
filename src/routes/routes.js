@@ -7,8 +7,12 @@ import {
   updatePacienteById,
 } from "../controllers/pacientes/pacientes.controller.js";
 import {
+  deletePsicologoById,
+  findAllPsicologos,
+  findOnePsicologoById,
   insertPsicologo,
   login,
+  updatePsicologoById,
 } from "../controllers/psicologos/psicologos.controllers.js";
 import verifyEmailAlreadyExists from "../middlewares/verify-email-already-exists.middleware.js";
 import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
@@ -45,10 +49,10 @@ routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
 
 // Rotas Psicologos
 routes.post("/psicologos", verifyPassword, insertPsicologo);
-// routes.get("/psicologos", findAllPsicologos); // precisa criar essa função lá no controllers
-// routes.get("/psicologos/:id", findOnePsicologoById); // precisa criar essa função lá no controllers
-// routes.put("/psicologos/:id", updatePsicologoById); // precisa criar essa função lá no controllers
-// routes.delete("/psicologos/:id", deletePsicologoById); // precisa criar essa função lá no controllers
+routes.get("/psicologos", findAllPsicologos);
+routes.get("/psicologos/:id", findOnePsicologoById);
+routes.put("/psicologos/:id", updatePsicologoById);
+routes.delete("/psicologos/:id", deletePsicologoById);
 
 // Rotas Atendimentos
 // routes.post("/atendimentos", insertAtendimento); // precisa criar essa função lá no controllers

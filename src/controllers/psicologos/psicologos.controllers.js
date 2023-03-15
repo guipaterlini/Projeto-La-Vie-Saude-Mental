@@ -33,3 +33,46 @@ export const insertPsicologo = async (req, res) => {
 
   return res.status(201).json({ psicologo });
 };
+
+export const findAllPsicologos = async (req, res) => {
+  const psicologos = await findAllPsicologosRepository();
+
+  return res.status(200).json({ psicologos });
+};
+
+export const findOnePsicologoById = async (req, res) => {
+  const { id } = req.params;
+
+  const psicologo = await findPsicologoById(id);
+
+  return res.status(200).json({ psicologo });
+};
+
+export const updatePsicologoById = async (req, res) => {
+  const { id } = req.params;
+  const { nome, email, senha, apresentacao } = req.body;
+
+  const psicologo = await findPsicologoByEmail(email);
+
+  if (psicologo !== null) {
+    if (id !== psicologo.id) {
+      return res.status(409).json({ err: ERROR_DUPLICATE_EMAIL(email) });
+    }
+  } else {
+    const psicologoAtualizado = await updatePsicologorepository(
+      id,
+      nome,
+      email,
+      senha,
+      apresentacao
+    );
+
+    return res.status(200).json(psicologoAtualizado);
+  }
+};
+
+export const deletePsicologoById = async (req, res) => {
+  const { id } = req.params;
+
+  await deletePsicologoRepository(id), res.status(204).send();
+};
