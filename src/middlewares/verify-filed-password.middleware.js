@@ -10,7 +10,7 @@ export default function verifyPassword(req, res, next) {
     return res.status(400).json({ message: ERROR_INVALID_PASSWORD_TYPE });
   }
 
-  if (password.length < 6) {
+  if (password.length < 6 && password.length > 30) {
     return res.status(400).json({ message: ERROR_PASSWORD_SIZE });
   }
 

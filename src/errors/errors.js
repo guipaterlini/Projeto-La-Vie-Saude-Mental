@@ -11,4 +11,5 @@ export const ERROR_INVALID_ID = "Id não encontrado";
 export const ERROR_INVALID_CREDENCIALS =
   "E-mail ou senha inválido, verifique e tente novamente";
 export const ERROR_INVALID_PASSWORD_TYPE = "A senha deve ser uma string";
-export const ERROR_PASSWORD_SIZE = "A senha deve conter no minimo 6 caracteres";
+export const ERROR_PASSWORD_SIZE =
+  "A senha deve conter no minimo 6 e no máximo 30 caracteres";
