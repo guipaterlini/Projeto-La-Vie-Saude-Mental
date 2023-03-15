@@ -13,6 +13,8 @@ export const login = async (req, res) => {
   const { email, senha } = req.body;
 
   const psicologo = await findPsicologoByEmail(email);
+  const id = psicologo.id
+  const nome = psicologo.nome
 
   if (senha === psicologo.senha) {
     const secret = "secret";
