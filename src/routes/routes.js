@@ -10,6 +10,7 @@ import {
   insertPsicologo,
   login,
 } from "../controllers/psicologos/psicologos.controllers.js";
+import auth from "../middlewares/auth.middleware.js";
 import verifyEmailAlreadyExists from "../middlewares/verify-email-already-exists.middleware.js";
 import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
@@ -24,23 +25,25 @@ routes.post("/login", login);
 // Rotas Pacientes
 routes.post(
   "/pacientes",
+  auth,
   verifyFieldEmail,
   verifyEmailAlreadyExists,
   verifyFieldName,
   verifyFieldAge,
   insertPacientes
 );
-routes.get("/pacientes", findAllPacientes);
-routes.get("/pacientes/:id", verifyValidId, findOnePacienteById);
+routes.get("/pacientes", auth, findAllPacientes);
+routes.get("/pacientes/:id", auth, verifyValidId, findOnePacienteById);
 routes.put(
   "/pacientes/:id",
+  auth,
   verifyValidId,
   verifyFieldEmail,
   verifyFieldName,
   verifyFieldAge,
   updatePacienteById
 );
-routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
+routes.delete("/pacientes/:id", auth, verifyValidId, deletePacienteById);
 
 // Rotas Psicologos
 routes.post("/psicologos", insertPsicologo);
