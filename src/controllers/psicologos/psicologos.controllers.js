@@ -34,7 +34,6 @@ export const insertPsicologo = async (req, res) => {
     senha,
     apresentacao
   );
-
   return res.status(201).json({ psicologo });
 };
 

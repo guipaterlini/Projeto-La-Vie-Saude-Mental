@@ -5,7 +5,7 @@ export default function auth(req, res, next) {
   const { token } = req.headers;
 
   const validateReqLogin = method == "POST" && url == "/login";
-  const validateReqInsertPsicologo = method == "POST" && url == "/psicologo";
+  const validateReqInsertPsicologo = method == "POST" && url == "/psicologos";
 
   const secret = "secret";
 
@@ -15,6 +15,7 @@ export default function auth(req, res, next) {
         return res.status(401).json({ err: err.message });
       }
     });
-    next();
   }
+
+  next();
 }

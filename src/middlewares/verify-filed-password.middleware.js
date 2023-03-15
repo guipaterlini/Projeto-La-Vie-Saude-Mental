@@ -4,13 +4,12 @@ import {
 } from "../errors/errors.js";
 
 export default function verifyPassword(req, res, next) {
-  const { password } = req.body;
-
-  if (typeof password !== "string") {
+  const { senha } = req.body;
+  if (typeof senha !== "string") {
     return res.status(400).json({ message: ERROR_INVALID_PASSWORD_TYPE });
   }
 
-  if (password.length < 6 && password.length > 30) {
+  if (senha.length < 6 && senha.length > 30) {
     return res.status(400).json({ message: ERROR_PASSWORD_SIZE });
   }
 
