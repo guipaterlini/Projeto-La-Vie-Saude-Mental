@@ -2,7 +2,11 @@ import jwt from "jsonwebtoken";
 import { ERROR_INVALID_CREDENCIALS } from "../../errors/errors.js";
 import {
   createPsicologoRepository,
+  deletePsicologoRepository,
+  findAllPsicologosRepository,
   findPsicologoByEmail,
+  findPsicologoById,
+  updatePsicologoRepository,
 } from "../../repositories/psicologos/psicologos.repository.js";
 
 export const login = async (req, res) => {
@@ -59,7 +63,7 @@ export const updatePsicologoById = async (req, res) => {
       return res.status(409).json({ err: ERROR_DUPLICATE_EMAIL(email) });
     }
   } else {
-    const psicologoAtualizado = await updatePsicologorepository(
+    const psicologoAtualizado = await updatePsicologoRepository(
       id,
       nome,
       email,
