@@ -13,8 +13,8 @@ export const login = async (req, res) => {
   const { email, senha } = req.body;
 
   const psicologo = await findPsicologoByEmail(email);
-  const id = psicologo.id
-  const nome = psicologo.nome
+  const id = psicologo.id;
+  const nome = psicologo.nome;
 
   if (senha === psicologo.senha) {
     const secret = "secret";
@@ -50,7 +50,13 @@ export const findOnePsicologoById = async (req, res) => {
 
   const psicologo = await findPsicologoById(id);
 
-  return res.status(200).json({ psicologo });
+  return res
+    .status(200)
+    .json({
+      nome: psicologo.nome,
+      email: psicologo.email,
+      apresetacao: psicologo.apresetacao,
+    });
 };
 
 export const updatePsicologoById = async (req, res) => {

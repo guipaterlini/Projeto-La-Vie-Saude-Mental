@@ -23,9 +23,6 @@ import verifyValidId from "../middlewares/verify-valid-id.middleware.js";
 
 const routes = Router();
 
-// Rota Login Psicologo
-routes.post("/login", login);
-
 // Rotas Pacientes
 routes.post(
   "/pacientes",
@@ -47,10 +44,13 @@ routes.put(
 );
 routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
 
+// Rota Login Psicologo
+routes.post("/login", verifyFieldEmail, verifyPassword, login);
+
 // Rotas Psicologos
-routes.post("/psicologos", verifyPassword, insertPsicologo);
+routes.post("/psicologos",verifyFieldEmail, verifyPassword, insertPsicologo);
 routes.get("/psicologos", findAllPsicologos);
-routes.get("/psicologos/:id", findOnePsicologoById);
+routes.get("/psicologos/:id", verifyValidId, findOnePsicologoById);
 routes.put("/psicologos/:id", updatePsicologoById);
 routes.delete("/psicologos/:id", deletePsicologoById);
 
