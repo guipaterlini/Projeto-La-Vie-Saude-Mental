@@ -5,6 +5,7 @@ import {
 
 export default function verifyPassword(req, res, next) {
   const { senha } = req.body;
+  console.log("cheguei no verifypassword")
   if (typeof senha !== "string") {
     return res.status(400).json({ message: ERROR_INVALID_PASSWORD_TYPE });
   }

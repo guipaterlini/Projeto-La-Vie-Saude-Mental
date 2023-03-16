@@ -9,7 +9,9 @@ export default function auth(req, res, next) {
 
   const secret = "secret";
 
-  if (!validateReqLogin && !validateReqInsertPsicologo) {
+  if (validateReqLogin || validateReqInsertPsicologo) {
+    next();
+  } else {
     jwt.verify(token, secret, (err, decoded) => {
       if (err) {
         return res.status(401).json({ err: err.message });
