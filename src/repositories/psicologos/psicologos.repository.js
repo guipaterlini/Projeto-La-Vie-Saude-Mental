@@ -29,11 +29,7 @@ export const findAllPsicologosRepository = async () => {
 export const findPsicologoById = async (id) => {
   const psicologo = await Psicologo.findOne({ where: { id } });
 
-  return {
-    nome: psicologo.nome,
-    email: psicologo.email,
-    apresentacao: psicologo.apresentacao,
-  };
+  return psicologo;
 };
 
 export const updatePsicologoRepository = async (

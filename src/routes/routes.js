@@ -60,7 +60,14 @@ routes.post(
 );
 routes.get("/psicologos", findAllPsicologos);
 routes.get("/psicologos/:id", verifyValidId, findOnePsicologoById);
-routes.put("/psicologos/:id", updatePsicologoById);
+routes.put(
+  "/psicologos/:id",
+  verifyFieldEmail,
+  verifyFieldName,
+  verifyPassword,
+  verifyFieldBio,
+  updatePsicologoById
+);
 routes.delete("/psicologos/:id", deletePsicologoById);
 
 // Rotas Atendimentos

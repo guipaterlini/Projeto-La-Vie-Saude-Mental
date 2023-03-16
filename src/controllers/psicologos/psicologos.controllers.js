@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { ERROR_INVALID_CREDENCIALS } from "../../errors/errors.js";
+import { ERROR_DUPLICATE_EMAIL, ERROR_INVALID_CREDENCIALS } from "../../errors/errors.js";
 import {
   createPsicologoRepository,
   deletePsicologoRepository,
@@ -48,22 +48,28 @@ export const findAllPsicologos = async (req, res) => {
 export const findOnePsicologoById = async (req, res) => {
   const { id } = req.params;
 
-  const psicologoSemSenha = await findPsicologoById(id);
+  const psicologo = await findPsicologoById(id);
 
-  return res.status(200).json(psicologoSemSenha);
+  return res.status(200).json({nome: psicologo.nome, email: psicologo.email, apresetacao: psicologo.apresentacao});
 };
 
 export const updatePsicologoById = async (req, res) => {
   const { id } = req.params;
   const { nome, email, senha, apresentacao } = req.body;
 
+  console.log("cheguei até o controller")
+
   const psicologo = await findPsicologoByEmail(email);
+  console.log("cguei dentro do if ")
 
   if (psicologo !== null) {
+    console.log("cguei dentro do if 1")
     if (id !== psicologo.id) {
+      console.log("cguei dentro do if 2")
       return res.status(409).json({ err: ERROR_DUPLICATE_EMAIL(email) });
     }
   } else {
+    console.log("cguei dentro do else")
     const psicologoAtualizado = await updatePsicologoRepository(
       id,
       nome,
