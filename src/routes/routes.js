@@ -68,7 +68,7 @@ routes.put(
   verifyFieldBio,
   updatePsicologoById
 );
-routes.delete("/psicologos/:id", deletePsicologoById);
+routes.delete("/psicologos/:id", verifyValidId, deletePsicologoById);
 
 // Rotas Atendimentos
 // routes.post("/atendimentos", insertAtendimento); // precisa criar essa função lá no controllers

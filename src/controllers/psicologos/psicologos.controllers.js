@@ -1,5 +1,8 @@
 import jwt from "jsonwebtoken";
-import { ERROR_DUPLICATE_EMAIL, ERROR_INVALID_CREDENCIALS } from "../../errors/errors.js";
+import {
+  ERROR_DUPLICATE_EMAIL,
+  ERROR_INVALID_CREDENCIALS,
+} from "../../errors/errors.js";
 import {
   createPsicologoRepository,
   deletePsicologoRepository,
@@ -11,7 +14,7 @@ import {
 
 export const login = async (req, res) => {
   const { email, senha } = req.body;
-console.log("cheguei no contorller")
+  console.log("cheguei no contorller");
   const psicologo = await findPsicologoByEmail(email);
   const id = psicologo.id;
   const nome = psicologo.nome;
@@ -50,35 +53,36 @@ export const findOnePsicologoById = async (req, res) => {
 
   const psicologo = await findPsicologoById(id);
 
-  return res.status(200).json({nome: psicologo.nome, email: psicologo.email, apresetacao: psicologo.apresentacao});
+  return res.status(200).json({
+    nome: psicologo.nome,
+    email: psicologo.email,
+    apresetacao: psicologo.apresentacao,
+  });
 };
 
 export const updatePsicologoById = async (req, res) => {
-  const { id } = req.params;
-  const { nome, email, senha, apresentacao } = req.body;
+  try {
+    const { id } = req.params;
+    const { nome, email, senha, apresentacao } = req.body;
 
-  console.log("cheguei até o controller")
+    const psicologo = await findPsicologoByEmail(email);
 
-  const psicologo = await findPsicologoByEmail(email);
-  console.log("cguei dentro do if ")
-
-  if (psicologo !== null) {
-    console.log("cguei dentro do if 1")
-    if (id !== psicologo.id) {
-      console.log("cguei dentro do if 2")
-      return res.status(409).json({ err: ERROR_DUPLICATE_EMAIL(email) });
-    }
-  } else {
-    console.log("cguei dentro do else")
-    const psicologoAtualizado = await updatePsicologoRepository(
-      id,
-      nome,
-      email,
-      senha,
-      apresentacao
-    );
-
-    return res.status(200).json(psicologoAtualizado);
+    return psicologo !== null && id !== psicologo.id
+      ? res.status(409).json({ err: ERROR_DUPLICATE_EMAIL(email) })
+      : res
+          .status(200)
+          .json(
+            await updatePsicologoRepository(
+              id,
+              nome,
+              email,
+              senha,
+              apresentacao
+            )
+          );
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ err: "Erro interno do servidor." });
   }
 };
 
