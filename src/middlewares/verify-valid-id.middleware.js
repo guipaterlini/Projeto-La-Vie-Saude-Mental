@@ -6,7 +6,7 @@ export default async function verifyValidId(req, res, next) {
   const { id } = req.params;
   const { url } = req;
 
-  if (url == "/pacientes") {
+  if (url == `/pacientes/${id}`) {
     const paciente = await findPacienteById(id);
 
     if (!paciente) {
