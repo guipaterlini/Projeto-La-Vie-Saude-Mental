@@ -48,7 +48,14 @@ routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
 routes.post("/login", verifyFieldEmail, verifyPassword, login);
 
 // Rotas Psicologos
-routes.post("/psicologos",verifyFieldEmail, verifyPassword, insertPsicologo);
+routes.post(
+  "/psicologos",
+  verifyFieldEmail,
+  verifyEmailAlreadyExists,
+  verifyFieldName,
+  verifyPassword,
+  insertPsicologo
+);
 routes.get("/psicologos", findAllPsicologos);
 routes.get("/psicologos/:id", verifyValidId, findOnePsicologoById);
 routes.put("/psicologos/:id", updatePsicologoById);
