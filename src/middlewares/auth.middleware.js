@@ -14,8 +14,7 @@ export default function auth(req, res, next) {
       if (err) {
         return res.status(401).json({ err: err.message });
       }
+      next();
     });
   }
-
-  next();
 }

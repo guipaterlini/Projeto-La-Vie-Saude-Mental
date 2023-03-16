@@ -48,15 +48,9 @@ export const findAllPsicologos = async (req, res) => {
 export const findOnePsicologoById = async (req, res) => {
   const { id } = req.params;
 
-  const psicologo = await findPsicologoById(id);
+  const psicologoSemSenha = await findPsicologoById(id);
 
-  return res
-    .status(200)
-    .json({
-      nome: psicologo.nome,
-      email: psicologo.email,
-      apresetacao: psicologo.apresetacao,
-    });
+  return res.status(200).json(psicologoSemSenha);
 };
 
 export const updatePsicologoById = async (req, res) => {

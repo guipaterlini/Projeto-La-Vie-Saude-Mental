@@ -16,6 +16,7 @@ import {
 } from "../controllers/psicologos/psicologos.controllers.js";
 import verifyEmailAlreadyExists from "../middlewares/verify-email-already-exists.middleware.js";
 import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
+import verifyFieldBio from "../middlewares/verify-field-bio.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
 import verifyFieldName from "../middlewares/verify-field-name.middleware.js";
 import verifyPassword from "../middlewares/verify-filed-password.middleware.js";
@@ -54,6 +55,7 @@ routes.post(
   verifyEmailAlreadyExists,
   verifyFieldName,
   verifyPassword,
+  verifyFieldBio,
   insertPsicologo
 );
 routes.get("/psicologos", findAllPsicologos);
