@@ -9,8 +9,8 @@ export const insertAtendimento = async (req, res) => {
   const { psicologo_id } = req.psicologo;
 
   const atendimento = await createAtendimentoRepository(
-    psicologo_id,
     paciente_id,
+    psicologo_id,
     data_atendimento,
     observacao
   );
