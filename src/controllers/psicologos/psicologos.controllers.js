@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import formatPsicologoResponse from "../../core/utils/format-psicologo-response.js";
 import {
   ERROR_DUPLICATE_EMAIL,
   ERROR_INVALID_CREDENCIALS,
@@ -45,7 +46,11 @@ export const insertPsicologo = async (req, res) => {
 export const findAllPsicologos = async (req, res) => {
   const psicologos = await findAllPsicologosRepository();
 
-  return res.status(200).json({ psicologos });
+  const formatPsicologos = psicologos.map((psicologo) => {
+    return formatPsicologoResponse(psicologo);
+  });
+
+  return res.status(200).json({ formatPsicologos });
 };
 
 export const findOnePsicologoById = async (req, res) => {
