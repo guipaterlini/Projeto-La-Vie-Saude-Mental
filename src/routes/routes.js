@@ -57,6 +57,7 @@ routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
 routes.post("/login", verifyFieldEmail, verifyPassword, login);
 
 // Rotas Psicologos
+
 routes.post(
   "/psicologos",
   verifyFieldEmail,
@@ -77,6 +78,7 @@ routes.put(
   updatePsicologoById
 );
 routes.delete("/psicologos/:id", verifyValidId, deletePsicologoById);
+
 
 // Rotas Atendimentos
 routes.post(

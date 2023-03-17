@@ -46,17 +46,20 @@ export const insertPsicologo = async (req, res) => {
 export const findAllPsicologos = async (req, res) => {
   const psicologos = await findAllPsicologosRepository();
 
+
   const formatPsicologos = psicologos.map((psicologo) => {
     return formatPsicologoResponse(psicologo);
   });
 
   return res.status(200).json(formatPsicologos);
+
 };
 
 export const findOnePsicologoById = async (req, res) => {
   const { id } = req.params;
 
   const psicologo = await findPsicologoById(id);
+
 
   return res.status(200).json({
     nome: psicologo.nome,
@@ -88,6 +91,7 @@ export const updatePsicologoById = async (req, res) => {
   } catch (err) {
     console.error(err);
     return res.status(500).json({ err: "Erro interno do servidor." });
+
   }
 };
 
@@ -95,4 +99,6 @@ export const deletePsicologoById = async (req, res) => {
   const { id } = req.params;
 
   await deletePsicologoRepository(id), res.status(204).send();
+
 };
+
