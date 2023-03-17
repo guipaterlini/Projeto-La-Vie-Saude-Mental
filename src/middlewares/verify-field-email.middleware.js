@@ -2,8 +2,7 @@ import { ERROR_INVALID_EMAIL, ERROR_TYPE_EMAIL } from "../errors/errors.js";
 
 export default function verifyFieldEmail(req, res, next) {
   const { email } = req.body;
-  console.log("cheguei no email")
-
+  console.log("cheguei no email");
 
   const usuario = email.substring(0, email.indexOf("@"));
   const dominio = email.substring(email.indexOf("@") + 1, email.length);

@@ -6,7 +6,7 @@ export default async function verifyEmailAlreadyExists(req, res, next) {
   const { email } = req.body;
   const { url } = req;
 
-  if ((url == "/pacientes")) {
+  if (url == "/pacientes") {
     const paciente = await findPacienteByEmail(email);
 
     if (paciente) {
@@ -14,7 +14,7 @@ export default async function verifyEmailAlreadyExists(req, res, next) {
     }
   }
 
-  if ((url == "/psicologos")) {
+  if (url == "/psicologos") {
     const psicologo = await findPsicologoByEmail(email);
 
     if (psicologo) {
