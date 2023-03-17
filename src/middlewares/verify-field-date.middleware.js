@@ -1,4 +1,4 @@
-import { ERROR_INVALID_DATE } from "../errors/errors";
+import { ERROR_INVALID_DATE } from "../errors/errors.js";
 
 export default function verifyFieldDate(req, res, next) {
   const { data_atendimento } = req.body;
