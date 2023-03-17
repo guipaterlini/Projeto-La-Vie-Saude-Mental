@@ -24,8 +24,10 @@ import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
 import verifyFieldBio from "../middlewares/verify-field-bio.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
 import verifyFieldName from "../middlewares/verify-field-name.middleware.js";
+import verifyFieldNotes from "../middlewares/verify-field-notes.middleware.js";
 import verifyPassword from "../middlewares/verify-filed-password.middleware.js";
 import verifyValidId from "../middlewares/verify-valid-id.middleware.js";
+import { findAtendimentoByIdRepository } from "../repositories/atendimentos/atendimentos.repository.js";
 
 const routes = Router();
 
@@ -76,8 +78,8 @@ routes.put(
 routes.delete("/psicologos/:id", verifyValidId, deletePsicologoById);
 
 // Rotas Atendimentos
-routes.post("/atendimentos", insertAtendimento);
+routes.post("/atendimentos", verifyFieldNotes, insertAtendimento);
 routes.get("/atendimentos", findAllAtendimentos);
-routes.get("/atendimentos/:id", findOneAtendimentoById);
+routes.get("/atendimentos/:id",findAtendimentoByIdRepository, findOneAtendimentoById);
 
 export default routes;
