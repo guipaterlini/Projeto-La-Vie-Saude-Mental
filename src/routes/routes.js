@@ -44,10 +44,10 @@ routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
 
 // Rotas Psicologos
 routes.post("/psicologos", insertPsicologo);
-// routes.get("/psicologos", findAllPsicologos); // precisa criar essa função lá no controllers
-// routes.get("/psicologos/:id", findOnePsicologoById); // precisa criar essa função lá no controllers
-// routes.put("/psicologos/:id", updatePsicologoById); // precisa criar essa função lá no controllers
-// routes.delete("/psicologos/:id", deletePsicologoById); // precisa criar essa função lá no controllers
+routes.get("/psicologos", findAllPsicologos); // precisa criar essa função lá no controllers
+routes.get("/psicologos/:id", findOnePsicologoById); // precisa criar essa função lá no controllers
+routes.put("/psicologos/:id", updatePsicologoById); // precisa criar essa função lá no controllers
+routes.delete("/psicologos/:id", deletePsicologoById); // precisa criar essa função lá no controllers
 
 // Rotas Atendimentos
 // routes.post("/atendimentos", insertAtendimento); // precisa criar essa função lá no controllers
