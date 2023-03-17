@@ -1,13 +1,19 @@
 import {
+  createAtendimentoRepository,
   findAllAtendimentosRepository,
   findAtendimentoByIdRepository,
 } from "../../repositories/atendimentos/atendimentos.repository.js";
 
 export const insertAtendimento = async (req, res) => {
-  const { paciente_id, data_atendimento, observaao } = req.body;
+  const { paciente_id, data_atendimento, observacao } = req.body;
   const { psicologo_id } = req.psicologo;
 
-  const atendimento = await createPacienteRepository(nome, email, idade);
+  const atendimento = await createAtendimentoRepository(
+    psicologo_id,
+    paciente_id,
+    data_atendimento,
+    observacao
+  );
 
   return res.status(201).json({ atendimento });
 };

@@ -17,7 +17,7 @@ export default function auth(req, res, next) {
         return res.status(401).json({ err: err.message });
       }
 
-      req.psicologo = { id: decoded.id };
+      req.psicologo = { psicologo_id: decoded.id };
 
       next();
     });
