@@ -14,7 +14,7 @@ import {
 
 export const login = async (req, res) => {
   const { email, senha } = req.body;
-  console.log("cheguei no contorller");
+
   const psicologo = await findPsicologoByEmail(email);
   const id = psicologo.id;
   const nome = psicologo.nome;
