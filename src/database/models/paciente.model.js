@@ -22,3 +22,7 @@ export const Paciente = db.define(
     tableName: "paciente",
   }
 );
+
+Paciente.associate = function (models) {
+  Paciente.hasMany(models.Atendimento, { foreignKey: "paciente_id" });
+};

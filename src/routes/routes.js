@@ -1,5 +1,10 @@
 import { Router } from "express";
 import {
+  findAllAtendimentos,
+  findOneAtendimentoById,
+  insertAtendimento,
+} from "../controllers/atendimentos/atendimentos.controllers.js";
+import {
   deletePacienteById,
   findAllPacientes,
   findOnePacienteById,
@@ -7,19 +12,25 @@ import {
   updatePacienteById,
 } from "../controllers/pacientes/pacientes.controller.js";
 import {
+  deletePsicologoById,
+  findAllPsicologos,
+  findOnePsicologoById,
   insertPsicologo,
   login,
+  updatePsicologoById,
 } from "../controllers/psicologos/psicologos.controllers.js";
 import verifyEmailAlreadyExists from "../middlewares/verify-email-already-exists.middleware.js";
 import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
+import verifyFieldBio from "../middlewares/verify-field-bio.middleware.js";
+import verifyFieldDate from "../middlewares/verify-field-date.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
 import verifyFieldName from "../middlewares/verify-field-name.middleware.js";
+import verifyFieldNotes from "../middlewares/verify-field-notes.middleware.js";
+import verifyPassword from "../middlewares/verify-filed-password.middleware.js";
 import verifyValidId from "../middlewares/verify-valid-id.middleware.js";
+import { findAtendimentoByIdRepository } from "../repositories/atendimentos/atendimentos.repository.js";
 
 const routes = Router();
-
-// Rota Login Psicologo
-routes.post("/login", login);
 
 // Rotas Pacientes
 routes.post(
@@ -42,16 +53,44 @@ routes.put(
 );
 routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
 
+// Rota Login Psicologo
+routes.post("/login", verifyFieldEmail, verifyPassword, login);
+
 // Rotas Psicologos
-routes.post("/psicologos", insertPsicologo);
-// routes.get("/psicologos", findAllPsicologos); // precisa criar essa função lá no controllers
-// routes.get("/psicologos/:id", findOnePsicologoById); // precisa criar essa função lá no controllers
-// routes.put("/psicologos/:id", updatePsicologoById); // precisa criar essa função lá no controllers
-// routes.delete("/psicologos/:id", deletePsicologoById); // precisa criar essa função lá no controllers
+routes.post(
+  "/psicologos",
+  verifyFieldEmail,
+  verifyEmailAlreadyExists,
+  verifyFieldName,
+  verifyPassword,
+  verifyFieldBio,
+  insertPsicologo
+);
+routes.get("/psicologos", findAllPsicologos);
+routes.get("/psicologos/:id", verifyValidId, findOnePsicologoById);
+routes.put(
+  "/psicologos/:id",
+  verifyFieldEmail,
+  verifyFieldName,
+  verifyPassword,
+  verifyFieldBio,
+  updatePsicologoById
+);
+routes.delete("/psicologos/:id", verifyValidId, deletePsicologoById);
 
 // Rotas Atendimentos
-// routes.post("/atendimentos", insertAtendimento); // precisa criar essa função lá no controllers
-// routes.get("/atendimentos", findAllAtendimentos); // precisa criar essa função lá no controllers
-// routes.get("/atendimentos/:id", findOneAtendimentoById); // precisa criar essa função lá no controllers
+routes.post(
+  "/atendimentos",
+  verifyFieldNotes,
+  verifyFieldDate,
+  verifyValidId,
+  insertAtendimento
+);
+routes.get("/atendimentos", findAllAtendimentos);
+routes.get(
+  "/atendimentos/:id",
+  findAtendimentoByIdRepository,
+  findOneAtendimentoById
+);
 
 export default routes;
