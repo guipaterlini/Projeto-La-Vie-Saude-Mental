@@ -26,3 +26,7 @@ export const Psicologo = db.define(
     tableName: "psicologo",
   }
 );
+
+Psicologo.associate = function (models) {
+  Psicologo.hasMany(models.Atendimento, { foreignKey: "psicologo_id" });
+};
