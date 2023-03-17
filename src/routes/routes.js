@@ -83,6 +83,7 @@ routes.post(
   "/atendimentos",
   verifyFieldNotes,
   verifyFieldDate,
+  verifyValidId,
   insertAtendimento
 );
 routes.get("/atendimentos", findAllAtendimentos);

@@ -5,7 +5,15 @@ import { findPsicologoById } from "../repositories/psicologos/psicologos.reposit
 
 export default async function verifyValidId(req, res, next) {
   const { id } = req.params;
-  const { url } = req;
+  const { url, method } = req;
+
+  if (url == `/atendimentos/${id}` && method == "POST") {
+    const paciente = await findPacienteById(id);
+
+    if (!paciente) {
+      return res.status(404).json({ err: ERROR_INVALID_ID });
+    }
+  }
 
   if (url == `/pacientes/${id}`) {
     const paciente = await findPacienteById(id);
