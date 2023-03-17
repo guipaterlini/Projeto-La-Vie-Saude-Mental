@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { db } from "../db.js";
 import { Paciente } from "./paciente.model.js";
+import { Psicologo } from "./psicologo.model.js";
 
 export const Atendimento = db.define(
   "atendimento",
@@ -21,6 +22,10 @@ export const Atendimento = db.define(
     psicologo_id: {
       type: DataTypes.STRING,
       allowNull: false,
+      references: {
+        model: Psicologo,
+        key: "id",
+      },
     },
     data_atendimento: {
       type: DataTypes.DATE,
