@@ -50,7 +50,7 @@ export const findAllPsicologos = async (req, res) => {
     return formatPsicologoResponse(psicologo);
   });
 
-  return res.status(200).json({ formatPsicologos });
+  return res.status(200).json(formatPsicologos);
 };
 
 export const findOnePsicologoById = async (req, res) => {
