@@ -16,12 +16,12 @@ export const createAtendimentoRepository = async (
   });
 };
 
-export const findAllAtendimentoRepository = async () => {
+export const findAllAtendimentosRepository = async () => {
   return await Atendimento.findAll();
 };
 
-export const findAtendimentoById = async (id) => {
-  const Atendimento = await Atendimento.findOne({ where: { id } });
+export const findAtendimentoByIdRepository = async (id) => {
+  const atendimento = await Atendimento.findOne({ where: { id } });
 
-  return Atendimento;
+  return atendimento;
 };

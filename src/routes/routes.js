@@ -1,5 +1,10 @@
 import { Router } from "express";
 import {
+  findAllAtendimentos,
+  findOneAtendimentoById,
+  insertAtendimento,
+} from "../controllers/atendimentos/atendimentos.controllers.js";
+import {
   deletePacienteById,
   findAllPacientes,
   findOnePacienteById,
@@ -71,8 +76,8 @@ routes.put(
 routes.delete("/psicologos/:id", verifyValidId, deletePsicologoById);
 
 // Rotas Atendimentos
-// routes.post("/atendimentos", insertAtendimento); // precisa criar essa função lá no controllers
-// routes.get("/atendimentos", findAllAtendimentos); // precisa criar essa função lá no controllers
-// routes.get("/atendimentos/:id", findOneAtendimentoById); // precisa criar essa função lá no controllers
+routes.post("/atendimentos", insertAtendimento);
+routes.get("/atendimentos", findAllAtendimentos);
+routes.get("/atendimentos/:id", findOneAtendimentoById);
 
 export default routes;
