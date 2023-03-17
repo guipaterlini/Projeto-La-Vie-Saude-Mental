@@ -22,6 +22,7 @@ import {
 import verifyEmailAlreadyExists from "../middlewares/verify-email-already-exists.middleware.js";
 import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
 import verifyFieldBio from "../middlewares/verify-field-bio.middleware.js";
+import verifyFieldDate from "../middlewares/verify-field-date.middleware.js";
 import verifyFieldEmail from "../middlewares/verify-field-email.middleware.js";
 import verifyFieldName from "../middlewares/verify-field-name.middleware.js";
 import verifyFieldNotes from "../middlewares/verify-field-notes.middleware.js";
@@ -78,8 +79,17 @@ routes.put(
 routes.delete("/psicologos/:id", verifyValidId, deletePsicologoById);
 
 // Rotas Atendimentos
-routes.post("/atendimentos", verifyFieldNotes, insertAtendimento);
+routes.post(
+  "/atendimentos",
+  verifyFieldNotes,
+  verifyFieldDate,
+  insertAtendimento
+);
 routes.get("/atendimentos", findAllAtendimentos);
-routes.get("/atendimentos/:id",findAtendimentoByIdRepository, findOneAtendimentoById);
+routes.get(
+  "/atendimentos/:id",
+  findAtendimentoByIdRepository,
+  findOneAtendimentoById
+);
 
 export default routes;

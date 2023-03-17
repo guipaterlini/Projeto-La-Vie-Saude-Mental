@@ -28,3 +28,6 @@ export const ERROR_PASSWORD_SIZE =
 export const ERROR_SIZE_NOTES =
   "A observação precisa ter menos de 700 caracteres";
 export const ERROR_TYPE_NOTES = 'O campo "observação" deve ser uma string';
+
+export const ERROR_INVALID_DATE =
+  'O campo "data_atendimento" deve estar no formato ISO_8601, ex: 2020-01-01T10:10:00z';
