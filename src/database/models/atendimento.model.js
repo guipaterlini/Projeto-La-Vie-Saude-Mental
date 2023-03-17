@@ -41,3 +41,9 @@ export const Atendimento = db.define(
     tableName: "atendimento",
   }
 );
+
+Paciente.hasMany(models.Atendimento, { foreignKey: "paciente_id" });
+Atendimento.belongsTo(Paciente, { foreignKey: "paciente_id" });
+
+Psicologo.hasMany(models.Atendimento, { foreignKey: "psicologo_id" });
+Atendimento.belongsTo(Psicologo, { foreignKey: "psicologo_id" });
