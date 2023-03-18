@@ -72,6 +72,7 @@ routes.get("/psicologos/:id", auth, verifyValidId, findOnePsicologoById);
 routes.put(
   "/psicologos/:id",
   auth,
+  verifyValidId,
   verifyFieldEmail,
   verifyFieldName,
   verifyPassword,
