@@ -13,7 +13,7 @@ export const ERROR_SIZE_BIO =
 export const ERROR_TYPE_BIO = "O campo 'apresentação' deve ser uma string";
 
 export const ERROR_INVALID_AGE =
-  'O campo "idade" deve ser uma data válida no formato YYYY-MM-DD';
+  "O campo 'idade' deve ser uma data válida no formato YYYY-MM-DD";
 
 export const ERROR_INVALID_ID = "Id não encontrado";
 
