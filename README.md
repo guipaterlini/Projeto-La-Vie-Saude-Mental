@@ -5,7 +5,7 @@
 Terceiro desafio em equipe do Gama Academy, com o objetivo de colocar em prática os conhecimentos de Back-end, criando uma API do zero utilizando Node.js, Express e
 Banco de dados MySQL.
 
-Link para acessar o projeto: https://guipaterlini.github.io/Projeto-La-Vie-Saude-Mental/
+Link para acessar o projeto: https://documenter.getpostman.com/view/21020916/2s93JzKzfS
 
 # Intruções para utilizar o projeto
 - Clone o repositorio para a sua máquina utilizando o git clone 
