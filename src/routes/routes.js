@@ -19,6 +19,7 @@ import {
   login,
   updatePsicologoById,
 } from "../controllers/psicologos/psicologos.controllers.js";
+import auth from "../middlewares/auth.middleware.js";
 import verifyEmailAlreadyExists from "../middlewares/verify-email-already-exists.middleware.js";
 import verifyFieldAge from "../middlewares/verify-field-age.middleware.js";
 import verifyFieldBio from "../middlewares/verify-field-bio.middleware.js";
@@ -57,7 +58,6 @@ routes.delete("/pacientes/:id", verifyValidId, deletePacienteById);
 routes.post("/login", verifyFieldEmail, verifyPassword, login);
 
 // Rotas Psicologos
-
 routes.post(
   "/psicologos",
   verifyFieldEmail,
@@ -67,30 +67,32 @@ routes.post(
   verifyFieldBio,
   insertPsicologo
 );
-routes.get("/psicologos", findAllPsicologos);
-routes.get("/psicologos/:id", verifyValidId, findOnePsicologoById);
+routes.get("/psicologos", auth, findAllPsicologos);
+routes.get("/psicologos/:id", auth, verifyValidId, findOnePsicologoById);
 routes.put(
   "/psicologos/:id",
+  auth,
   verifyFieldEmail,
   verifyFieldName,
   verifyPassword,
   verifyFieldBio,
   updatePsicologoById
 );
-routes.delete("/psicologos/:id", verifyValidId, deletePsicologoById);
-
+routes.delete("/psicologos/:id", auth, verifyValidId, deletePsicologoById);
 
 // Rotas Atendimentos
 routes.post(
   "/atendimentos",
+  auth,
   verifyFieldNotes,
   verifyFieldDate,
   verifyValidId,
   insertAtendimento
 );
-routes.get("/atendimentos", findAllAtendimentos);
+routes.get("/atendimentos", auth, findAllAtendimentos);
 routes.get(
   "/atendimentos/:id",
+  auth,
   findAtendimentoByIdRepository,
   findOneAtendimentoById
 );
