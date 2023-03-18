@@ -55,5 +55,10 @@ export const updatePacienteById = async (req, res) => {
 export const deletePacienteById = async (req, res) => {
   const { id } = req.params;
 
-  await deletePacienteRepository(id), res.status(204).send();
+  try {
+    await deletePacienteRepository(id), res.status(204).send();
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: "Paciente não pode ser excluido por estar referenciado em um atendimento"})
+  }
 };

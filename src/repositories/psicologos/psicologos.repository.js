@@ -42,15 +42,15 @@ export const findPsicologoByEmail = async (email) => {
   return psicologo;
 };
 
-export const findAllPsicologosRepository = async () => {
-  return await Psicologo.findAll();
-};
+// export const findAllPsicologosRepository = async () => {
+//   return await Psicologo.findAll();
+// };
 
-export const findPsicologoById = async (id) => {
-  const psicologo = await Psicologo.findOne({ where: { id } });
+// export const findPsicologoById = async (id) => {
+//   const psicologo = await Psicologo.findOne({ where: { id } });
 
-  return psicologo;
-};
+//   return psicologo;
+// };
 
 export const updatePsicologoRepository = async (
   id,
@@ -67,6 +67,6 @@ export const updatePsicologoRepository = async (
   return await Psicologo.findOne({ where: { id } });
 };
 
-export const deletePsicologoRepository = async (id) => {
-  return await Psicologo.destroy({ where: { id } });
-};
+// export const deletePsicologoRepository = async (id) => {
+//   return await Psicologo.destroy({ where: { id } });
+// }
