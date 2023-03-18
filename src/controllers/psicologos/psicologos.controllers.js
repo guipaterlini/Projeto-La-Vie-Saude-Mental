@@ -98,7 +98,11 @@ export const updatePsicologoById = async (req, res) => {
 export const deletePsicologoById = async (req, res) => {
   const { id } = req.params;
 
-  await deletePsicologoRepository(id), res.status(204).send();
-
+  try {
+    await deletePsicologoRepository(id), res.status(204).send();
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ message: "Psicologo não pode ser excluido por estar referenciado em um atendimento"})
+  }
 };
 
