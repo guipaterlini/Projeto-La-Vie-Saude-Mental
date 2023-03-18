@@ -17,15 +17,17 @@ export const login = async (req, res) => {
   const { email, senha } = req.body;
 
   const psicologo = await findPsicologoByEmail(email);
-  const id = psicologo.id;
-  const nome = psicologo.nome;
+  if (psicologo !== null) {
+    const id = psicologo.id;
+    const nome = psicologo.nome;
 
-  if (senha === psicologo.senha) {
-    const secret = "secret";
+    if (senha === psicologo.senha) {
+      const secret = "secret";
 
-    const token = jwt.sign({ id, email, nome }, secret, { expiresIn: "1h" });
+      const token = jwt.sign({ id, email, nome }, secret, { expiresIn: "1h" });
 
-    return res.status(200).json({ token });
+      return res.status(200).json({ token });
+    }
   }
 
   res.status(401).json({ message: ERROR_INVALID_CREDENCIALS });
@@ -46,20 +48,17 @@ export const insertPsicologo = async (req, res) => {
 export const findAllPsicologos = async (req, res) => {
   const psicologos = await findAllPsicologosRepository();
 
-
   const formatPsicologos = psicologos.map((psicologo) => {
     return formatPsicologoResponse(psicologo);
   });
 
   return res.status(200).json(formatPsicologos);
-
 };
 
 export const findOnePsicologoById = async (req, res) => {
   const { id } = req.params;
 
   const psicologo = await findPsicologoById(id);
-
 
   return res.status(200).json({
     nome: psicologo.nome,
@@ -91,7 +90,6 @@ export const updatePsicologoById = async (req, res) => {
   } catch (err) {
     console.error(err);
     return res.status(500).json({ err: "Erro interno do servidor." });
-
   }
 };
 
@@ -102,7 +100,11 @@ export const deletePsicologoById = async (req, res) => {
     await deletePsicologoRepository(id), res.status(204).send();
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: "Psicologo não pode ser excluido por estar referenciado em um atendimento"})
+    res
+      .status(400)
+      .json({
+        message:
+          "Psicologo não pode ser excluido por estar referenciado em um atendimento",
+      });
   }
 };
-
