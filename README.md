@@ -10,7 +10,7 @@ Link para acessar o projeto: https://documenter.getpostman.com/view/21020916/2s9
 # Intruções para utilizar o projeto
 - Clone o repositorio para a sua máquina utilizando o git clone 
 - No terminal, dentro do projeto, instale todos os pacotes e depêndencias usando o npm install
-- Crie o banco de dados e as tabelas utilizando os comendos do arquivo /src/database/createDatabase.sql
+- Crie o banco de dados e as tabelas utilizando os comendos da pasta /sql
 
 # 📁 Objetivos de estudo
 - Boas práticas em relação ao uso de JS e organização do projeto usando os princípios do MVC.
