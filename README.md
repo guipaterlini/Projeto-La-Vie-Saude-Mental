@@ -27,5 +27,5 @@ Link para acessar o projeto: https://documenter.getpostman.com/view/21020916/2s9
 
 # Autores
 
-| [<img src="https://avatars.githubusercontent.com/guipaterlini" width=115><br><sub>Guilherme Paterlini</sub>](https://github.com/guipaterlini) |  [<img src="https://avatars.githubusercontent.com/bnvsureck" width=115><br><sub>Bruno Sureck</sub>](https://github.com/bnvsureck) |  [<img src="https://avatars.githubusercontent.com/Leonardo-tech-stack" width=115><br><sub>Leonardo Carvalho</sub>](https://github.com/Leonardo-tech-stack) |
+| [<img src="https://avatars.githubusercontent.com/guipaterlini" width=115><br><sub>Guilherme Paterlini</sub>](https://github.com/guipaterlini) |  [<img src="https://avatars.githubusercontent.com/Leonardo-tech-stack" width=115><br><sub>Leonardo Carvalho</sub>](https://github.com/Leonardo-tech-stack) |
 | :---: | :---: | :---: |
